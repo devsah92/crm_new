@@ -5,156 +5,172 @@
 
     <div class="main " id="main">
 
+        <!DOCTYPE html>
+        <html>
+        
         <head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-            <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+            <title>Laravel 8 Crud operation using ajax(Real Programmer)</title>
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+            <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+        
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         </head>
-
-
-        <div class="card">
-            <h6 class="card-header text-white" style="background-color: #00AA9E;">ADD ROLE</h6>
-            <div class="card-body">
-
-
-                <body>
-
-
-
-                    <form class="row g-3" method="POST" action="{{ url('/') }}/role">
-                        @csrf
-                        <div class="col-md-12">
-                            <label for="inputName5" class="form-label">New Role</label>
-                            <input name="name" type="text" class="form-control" id="inputName5" placeholder="Required*">
-                            <span class="text-danger">
-                                @error('name')
-                                    {{ $message }}
-
-                                @enderror
-                            </span>
-                        </div>
-
-
-
-
-
-                        <div class="text-center">
-
-                            <button type="submit" class="btn btn-primary">Save</button>
-
-
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </form><!-- End Multi Columns Form -->
-
-
-
-
-                </body>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading text-white" style="background-color: #00AA9E;">
-                <h3 class="panel-title">List of Roles</h3>
-            </div>
-            <div class="panel-body">
-
-                @csrf
-                <table id="dtHorizontalExample" class="table table-bordered table-striped" cellpadding="0" cellspacing="0"
-                    width="100%">
-
+        
+        <body>
+        
+            <div class="container">
+                <h1>Laravel 8 Crud with Ajax</h1>
+                <a class="btn btn-success" href="javascript:void(0)" id="createNewBook"> Create New Role</a>
+                <table class="table table-bordered data-table">
                     <thead>
                         <tr>
-                            <th>S.No</th>
-                            <th style="display: none">ID</th> 
+                            <th>SN</th>
+                            {{-- <th>ID</th> --}}
                             <th>Role</th>
-                            {{-- <th>Action</th>
-                            <th>Action</th> --}}
-
+        
+                            <th width="300px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        @php
-                        $i = 1
-                        @endphp
-
-                        @foreach ($sdata as $key)
-                            <tr>
-                                <td>{{ $i }}</td>
-                               <td style="display: none">{{ $key->id }}</td> 
-                                <td>{{ $key->role }}</td>
-                                @php
-                                $i = $i + 1;
-                                @endphp
-
-                            </tr>
-                        @endforeach
-
-
-
-
                     </tbody>
-
                 </table>
-
             </div>
-        </div>
-        <div class="card">
-            <h6 class="card-header text-white" style="background-color: #00AA9E;">
-                INSTRUCTIONS
-
-            </h6>
-            <div class="card-body">
-
-
+        
+            <div class="modal fade" id="ajaxModel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modelHeading"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="bookForm" name="bookForm" class="form-horizontal">
+        
+                                <div class="form-group">
+                                    <input type="hidden" name="id" id="id">
+        
+                                </div>
+        
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Details</label>
+                                    <div class="col-sm-12">
+                                        <textarea id="role" name="role" required="" placeholder="role"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+        
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-
-
-
-
-                // <!---   jnjs   -->//
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-Token': $("input[name=_token]").val()
-                    }
-                });
-                $('#dtHorizontalExample').DataTable();
-
-                $('#dtHorizontalExample').Tabledit({
-                    url: '/role',
-                    dataType: "json",
-                    columns: {
-                        identifier: [1, 'id'],
-                        editable: [
-                            [2, 'role']
-                        ]
-                    },
-                    restoreButton: false,
-                    onSuccess: function(data, textStatus, jqXHR) {
-                        console.log(data);
-                        if (data.action == 'delete') {
-                            $('#' + data.id).remove();
+        
+        
+        
+            <script type="text/javascript">
+                $(function() {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    }
+        
+                    });
+                    var table = $('.data-table').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ route('books.index') }}",
+                        columns: [
+                            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+        
+                            // {
+                            //     data: 'id',
+                            //     name: 'id'
+                            // },
+                            {
+                                data: 'role',
+                                name: 'role'
+                            },
+                            {
+                                data: 'action',
+                                name: 'action',
+                                orderable: false,
+                                searchable: false
+                            },
+                        ]
+                    });
+                    $('#createNewBook').click(function() {
+        
+                        $('#id').val('');
+                        $('#bookForm').trigger("reset");
+                        $('#modelHeading').html("Create New Role");
+                        $('#ajaxModel').modal('show');
+                    });
+                    $('body').on('click', '.editBook', function() {
+                        var book_id = $(this).data('id');
+                        $.get("{{ route('books.index') }}" + '/' + book_id + '/edit', function(data) {
+                            $('#modelHeading').html("Edit Role");
+                            $('#saveBtn').val("edit-book");
+                            $('#ajaxModel').modal('show');
+                            $('#id').val(data.id);
+                            $('#role').val(data.role);
+                        })
+                    });
+                    $('#saveBtn').click(function(e) {
+                        e.preventDefault();
+                        $(this).html('Save');
+        
+                        $.ajax({
+                            data: $('#bookForm').serialize(),
+                            url: "{{ route('books.store') }}",
+                            type: "POST",
+                            dataType: 'json',
+                            success: function(data) {
+        
+                                $('#bookForm').trigger("reset");
+                                $('#ajaxModel').modal('hide');
+                                table.draw();
+        
+                            },
+                            error: function(data) {
+                                console.log('Error is:', data);
+                                $('#saveBtn').html('Save Changes');
+                            }
+                        });
+                    });
+        
+                    $('body').on('click', '.deleteBook', function() {
+        
+                        var book_id = $(this).data("id");
+                        confirm("Are You sure want to delete !");
+        
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('books.store') }}" + '/' + book_id,
+                            success: function(data) {
+                                table.draw();
+                            },
+                            error: function(data) {
+                                console.log('Error:', data);
+                            }
+                        });
+                    });
+        
                 });
-
-
-            });
-        </script>
-
-
-
-
-
+            </script>
+        </body>
+        
+        </html>
+        
     </div> <!--   End #main -->
 
 @endsection
