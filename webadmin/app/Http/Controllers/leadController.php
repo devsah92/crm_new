@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\lead;
 //use App\DataTables\soleDataTable;
+use Illuminate\Http\Request;
+use App\Models\lead;
+use App\Models\role;
 use DataTables;
 
-//use App\DataTables\roleDataTable;
-
-class BooksController extends Controller
+class leadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,29 +17,27 @@ class BooksController extends Controller
      */
     public function index(Request $request)
     {
-        $books = Role::latest()->get();
-        $role = session()->get('role');
-        if ($role=='Admin') {
-            if ($request->ajax()) {
-                $data = Role::latest()->get();
-                return Datatables::of($data)
+        $books = lead::latest()->get();
+        $user = session()->get('user');
+        // $role = session()->get('role');
+       
+        if ($request->ajax()) {
+            $data = lead::latest()->where('reference', $user)->get();
+            return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
                         $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Edit</a>';
    
-                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Delete</a>';
+                        // $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Delete</a>';
     
                         return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
-            }
-      
-            return view('managerole', compact('books'));
-        // return $dataTable->render('managerole');
-        } else {
-            return redirect('/');
         }
+      
+        return view('leads', compact('books'));
+        // return $dataTable->render('managerole');
     }
 
     /**
@@ -49,19 +45,9 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        // $role = new Role();
-
-        // $role-> $request->role;
-        // $role->save();
-
-        Role::updateOrCreate(
-            ['role' => $request->role],
-            [ 'role' => $request->role]
-        );
-
-        return response()->json(['success'=>'Role saved successfully.']);
+        //
     }
 
     /**
@@ -78,17 +64,39 @@ class BooksController extends Controller
         // );
         $val   = $request->id;
         if ($val != null) {
-            $var = Role::find($val);
-            $var->role = $request->role;
+            $var = lead::find($val);
+            $var->name = $request->name;
+            $var->mobile = $request->mob;
+            $var->email = $request->email;
+            $var->whatsapp = $request->watsapp;
+            $var->city = $request->city;
+            $var->state = $request->state;
+            $var->address = $request->address;
+            $var->pincode = $request->pincode;
+            $var->requirement = $request->req;
+            $var->description = $request->desc;
+            $var->assign_to = $request->asign;
+            $var->status1 = $request->status;
             $var->save();
-            return response()->json(['success'=>'Role updated successfully.']);
+            return response()->json(['success'=>'Lead updated successfully.']);
         } else {
-            $vars = new Role();
+            $var = new lead();
 
-            $vars->role = $request->role;
-            $vars->save();
+            $var->name = $request->name;
+            $var->mobile = $request->mob;
+            $var->email = $request->email;
+            $var->whatsapp = $request->watsapp;
+            $var->city = $request->city;
+            $var->state = $request->state;
+            $var->address = $request->address;
+            $var->pincode = $request->pincode;
+            $var->requirement = $request->req;
+            $var->description = $request->desc;
+            $var->reference = session('user');
+          
+            $var->save();
        
-            return response()->json(['success'=>'Role saved successfully.']);
+            return response()->json(['success'=>'Lead saved successfully.']);
         }
     }
 
@@ -111,7 +119,7 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        $book = Role::find($id);
+        $book = lead::find($id);
         return response()->json($book);
     }
 
@@ -135,8 +143,8 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        Role::find($id)->delete();
+        lead::find($id)->delete();
      
-        return response()->json(['success'=>'Role deleted successfully.']);
+        return response()->json(['success'=>'Lead deleted successfully.']);
     }
 }

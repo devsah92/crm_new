@@ -1,3 +1,12 @@
+@extends('template.main')
+@section('main-container')
+
+
+
+    <div class="main " id="main">
+
+
+
 <h1>hello projects
 
 </h1>
@@ -35,3 +44,5 @@
     </form>
   </td>
 
+    </div>
+@endsection

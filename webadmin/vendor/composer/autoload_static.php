@@ -26,10 +26,10 @@ class ComposerStaticInit774970b896c43083c63d41e4e3e3ea18
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -216,11 +216,11 @@ class ComposerStaticInit774970b896c43083c63d41e4e3e3ea18
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (
@@ -597,12 +597,12 @@ class ComposerStaticInit774970b896c43083c63d41e4e3e3ea18
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\DataTables\\soleDataTable' => __DIR__ . '/../..' . '/app/DataTables/soleDataTable.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AjaxController' => __DIR__ . '/../..' . '/app/Http/Controllers/AjaxController.php',
         'App\\Http\\Controllers\\BooksController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
-        'App\\Http\\Controllers\\LeadsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LeadsController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
         'App\\Http\\Controllers\\ManageuserController' => __DIR__ . '/../..' . '/app/Http/Controllers/ManageuserController.php',
         'App\\Http\\Controllers\\ProjectprogressController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProjectprogressController.php',
@@ -612,6 +612,7 @@ class ComposerStaticInit774970b896c43083c63d41e4e3e3ea18
         'App\\Http\\Controllers\\TableditController' => __DIR__ . '/../..' . '/app/Http/Controllers/TableditController.php',
         'App\\Http\\Controllers\\UserauthController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserauthController.php',
         'App\\Http\\Controllers\\followupsController' => __DIR__ . '/../..' . '/app/Http/Controllers/followupsController.php',
+        'App\\Http\\Controllers\\leadController' => __DIR__ . '/../..' . '/app/Http/Controllers/leadController.php',
         'App\\Http\\Controllers\\testcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/testcontroller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -622,6 +623,7 @@ class ComposerStaticInit774970b896c43083c63d41e4e3e3ea18
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\lead' => __DIR__ . '/../..' . '/app/Models/lead.php',
         'App\\Models\\role' => __DIR__ . '/../..' . '/app/Models/role.php',
         'App\\Models\\test' => __DIR__ . '/../..' . '/app/Models/test.php',
         'App\\Models\\user' => __DIR__ . '/../..' . '/app/Models/user.php',

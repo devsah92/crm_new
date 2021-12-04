@@ -26,7 +26,7 @@
         <body>
         
             <div class="container">
-                <h1>Laravel 8 Crud with Ajax</h1>
+                <h1>ROLE MANAGEMENT</h1>
                 <a class="btn btn-success" href="javascript:void(0)" id="createNewBook"> Create New Role</a>
                 <table class="table table-bordered data-table">
                     <thead>
@@ -57,13 +57,13 @@
         
                                 </div>
         
-                                <div class="form-group">
+                                
                                     <label class="col-sm-2 control-label">Details</label>
                                     <div class="col-sm-12">
                                         <textarea id="role" name="role" required="" placeholder="role"
                                             class="form-control"></textarea>
                                     </div>
-                                </div>
+                                
         
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes

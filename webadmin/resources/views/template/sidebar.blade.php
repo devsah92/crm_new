@@ -10,6 +10,12 @@
         </a>
       </li>
 
+
+     
+      @if ((session()->get('role'))=='Admin')
+      
+
+      
       <!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="">
@@ -36,7 +42,7 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-general.html">
+            <a href="lead">
               <i class="bi bi-circle"></i><span>Leads</span>
             </a>
           </li>
@@ -65,7 +71,56 @@
           </li>
         </ul>
       </li><!-- End Blank Page Nav -->
+      
+      @elseif ((session()->get('role'))=='Channel Partner')
+      
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Lead Management</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="lead">
+                <i class="bi bi-circle"></i><span>Leads</span>
+              </a>
+            </li>
+            <li>
+              <a href="tables-data.html">
+                <i class="bi bi-circle"></i><span>Follow_Up</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Tables Nav -->
+  
+      
+          
+      @else
+      
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bar-chart"></i><span>Project management</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="charts-chartjs.html">
+                <i class="bi bi-circle"></i><span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="charts-apexcharts.html">
+                <i class="bi bi-circle"></i><span>Projects Progress Reports</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Blank Page Nav -->
+      
 
+     
+          
+      @endif
     </ul>
 
   </aside><!-- End Sidebar-->
+
+
+ 
