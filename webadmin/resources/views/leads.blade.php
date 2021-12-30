@@ -29,7 +29,7 @@
                 <h1>LEAD MANAGEMENT</h1>
                 <a class="btn btn-success" href="javascript:void(0)" id="createNewBook"> Add Lead</a>
             </div>
-                <hr >
+            <hr>
             <div class="container">
                 <table class="table table-bordered data-table">
                     <thead>
@@ -224,7 +224,7 @@
                     });
                     $('body').on('click', '.editBook', function() {
                         var book_id = $(this).data('id');
-                        
+
 
                         $.get("{{ route('lead.index') }}" + '/' + book_id + '/edit', function(data) {
                             $('#modelHeading').html("Edit Lead");
@@ -232,7 +232,7 @@
                             $('#ajaxModel').modal('show');
                             $('#id').val(data.id);
 
-                        
+
                             $('#name').val(data.name);
 
                             $('#mob').val(data.mobile);
@@ -245,7 +245,7 @@
                             $('#state').val(data.state);
                             $('#req').val(data.requirement);
                             $('#desc').val(data.description);
-                           
+
                         })
                     });
                     $('#saveBtn').click(function(e) {

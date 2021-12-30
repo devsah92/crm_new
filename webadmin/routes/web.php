@@ -5,26 +5,20 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
-use App\Http\Controllers\rolesController;
+
 use App\Http\Controllers\ManageuserController;
 use App\Http\Controllers\leadController;
-
+use App\Http\Controllers\ProjectsController;
 
 use App\Http\Controllers\BooksController;
-use App\Http\Controllers\RoleController;
+
 use App\Http\Controllers\UserauthController;
 use App\Http\Controllers\testcontroller;
-use App\Http\Controllers\TableditController;
-use App\Http\Controllers\DevController;
+
+
+use App\Http\Controllers\RazorpayPaymentController;
 use App\Models\user;
 use App\Models\role;
-  
-use App\Http\Controllers\AjaxController;
-
-Route::get('jqtable', [TableditController::class,'index']);
-
-Route::post('tabledit/action', [TableditController::class,'action'])->name('tabledit.action');
-
 
 Route::post('/user', [UserauthController::class,'UserLogin']);
 
@@ -39,6 +33,7 @@ Route::resource('test', testcontroller::class);
 
 Route::resource('books', BooksController::class);
 Route::resource('lead', leadController::class);
+Route::resource('Projects', ProjectsController::class);
 
 //------------ User Routes start----------------//--------------------------//
 
@@ -94,10 +89,10 @@ Route::get('/dashboard', [DashboardController::class,'index']);
 Route::get('/', [LoginController::class,'index']);
 
 
-Route::get('ajaxRequest', [AjaxController::class, 'ajaxRequest']);
-Route::post('ajaxRequest', [AjaxController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
 
 
 
 
 Route::get('/deleteuser/{userid}', [ManageuserController::class,'delete']);
+Route::get('payment', [RazorpayPaymentController::class, 'index']);
+Route::post('payment', [RazorpayPaymentController::class, 'store']);
